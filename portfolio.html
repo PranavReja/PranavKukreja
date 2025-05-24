@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pranav Kukreja - Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💾</text></svg>">
+  <style>
+    body {
+      font-weight: 600;
+      line-height: 1.8;
+      font-size: 18px;
+      background-color: #f5f5dc;
+      font-family: Verdana, Geneva, sans-serif;
+      color: black;
+      margin: 0;
+      padding: 0;
+    }
+
+    .crt-border {
+      border-left: 20px ridge #666;
+      border-top: 20px ridge #222;
+      border-right: 20px ridge #444;
+      border-bottom: 20px ridge #222;
+      margin: 10px;
+      padding: 10px;
+      background-image: url("src/background.png");
+      background-repeat: repeat;
+    }
+
+    .container {
+      width: 900px;
+      margin: 0 auto;
+      background-color: #faf9f6;
+      border: 2px solid black;
+    }
+
+    .header {
+      background-color: #dcdcdc;
+      text-align: center;
+      padding: 10px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .nav {
+      background-color: #e0e0e0;
+      padding: 10px;
+      border-bottom: 2px dotted #999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex: 1;
+      justify-content: space-evenly;
+    }
+
+    .nav-button {
+      display: inline-block;
+      padding: 6px 14px;
+      font-family: inherit;
+      background-color: #e0e0e0;
+      border: 2px outset #999;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #c0c0c0;
+      color: blue;
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    /* Filter Styles */
+    .filter-container {
+      margin: 20px 0;
+      padding: 10px 15px;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px dashed #999;
+      text-align: center;
+    }
+
+    .filter-button {
+      padding: 4px 10px;
+      margin: 3px;
+      font-family: inherit;
+      background-color: transparent;
+      border: 1px solid #999;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .filter-button.active {
+      color: white;
+    }
+
+    .filter-button[data-tag="all"] {
+      border-color: #666;
+    }
+
+    .filter-button[data-tag="AI/ML"] {
+      border-color: #00cc66;
+    }
+
+    .filter-button[data-tag="IoT"] {
+      border-color: #00ffff;
+    }
+
+    .filter-button[data-tag="Networking"] {
+      border-color: #ff00ff;
+    }
+
+    .filter-button[data-tag="Frontend"] {
+      border-color: #ff3399;
+    }
+
+    .filter-button[data-tag="Security"] {
+      border-color: #ffcc00;
+    }
+
+    .filter-button[data-tag="Hardware"] {
+      border-color: #A020F0;
+    }
+
+    .filter-button.active[data-tag="all"] {
+      background-color: #666;
+    }
+
+    .filter-button.active[data-tag="AI/ML"] {
+      background-color: #00cc66;
+    }
+
+    .filter-button.active[data-tag="IoT"] {
+      background-color: #00ffff;
+      color: black;
+    }
+
+    .filter-button.active[data-tag="Networking"] {
+      background-color: #ff00ff;
+    }
+
+    .filter-button.active[data-tag="Frontend"] {
+      background-color: #ff3399;
+    }
+
+    .filter-button.active[data-tag="Security"] {
+      background-color: #ffcc00;
+      color: black;
+    }
+    .filter-button.active[data-tag="Hardware"] {
+    background-color: #A020F0;
+    color: white;
+    }
+
+    /* Project Grid Styles */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 240px);
+      gap: 35px;
+      padding: 30px;
+      justify-content: center;
+      grid-auto-flow: dense;
+    }
+
+    .tile-link {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .tile-link[style*="display: none"] {
+      grid-column: span 0;
+      grid-row: span 0;
+    }
+
+    .tile-link[style*="display: block"] {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .project-tile {
+      width: 240px;
+      height: 300px;
+      text-align: left;
+      padding: 10px;
+      font-family: 'Courier New', monospace;
+      background-color: #e2e2dc;
+      box-sizing: border-box;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .project-tile:hover {
+      transform: scale(1.02);
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    .project-tile img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border: 1px solid #000;
+      margin-bottom: 10px;
+    }
+
+    .project-tile strong {
+      display: inline;
+    }
+
+    .project-tile .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    .tag {
+      padding: 2px 6px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 5px;
+      color: black;
+      border: 1px solid #000;
+    }
+
+    .crt-chin {
+      height: 100px;
+    }
+
+    .crt-chin-image {
+      display: flex;
+      justify-content: center;
+      margin-left: 100px;
+      align-items: center;
+      margin-top: -15px;
+      height: 100px;
+    }
+
+    .crt-chin-image img {
+      height: 75px;
+      opacity: 0.85;
+    }
+
+    .project-tile h3 {
+      margin: 0 0 5px 0;
+      font-family: 'Courier New', monospace;
+    }
+
+    .project-tile p {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Modal Overlay Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+    }
+
+    .modal-content {
+      background-color: #faf9f6;
+      width: 90%;
+      max-width: 1000px;
+      max-height: 90vh;
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 30px;
+      position: relative;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      transform: scale(0.7);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px dotted #999;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #000;
+      border-radius: 5px;
+      background-color: #e0e0e0;
+      transition: background-color 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background-color: #c0c0c0;
+    }
+
+    .modal-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .modal-image img {
+      max-width: 45%;
+      height: 300px;
+      object-fit: contain;
+      border: 1px solid #000;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      background-color: #f5f5f5;
+    }
+
+    .modal-image img:hover {
+      transform: scale(1.02);
+    }
+
+    /* For single images */
+    .modal-image img:only-child {
+      max-width: 100%;
+      width: auto;
+      max-height: 500px;
+    }
+
+    .modal-description {
+      line-height: 1.6;
+      margin-bottom: 20px;
+      white-space: pre-line;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .modal-overlay.active .modal-description {
+      transform: translateY(0);
+      opacity: 1;
+      transition-delay: 0.2s;
+    }
+
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .modal-overlay.active .modal-tags {
+      transform: translateY(0);
+      opacity: 1;
+      transition-delay: 0.3s;
+    }
+
+    .modal-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 2px dotted #999;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .modal-overlay.active .modal-links {
+      transform: translateY(0);
+      opacity: 1;
+      transition-delay: 0.4s;
+    }
+
+    .modal-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      background-color: #e0e0e0;
+      border: 2px outset #999;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background-color 0.2s ease;
+    }
+
+    .modal-link:hover {
+      background-color: #c0c0c0;
+      color: blue;
+    }
+
+    /* Add Full Screen Image Viewer */
+    .fullscreen-image-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .fullscreen-image-overlay.active {
+      opacity: 1;
+    }
+
+    .fullscreen-image {
+      max-width: 95vw;
+      max-height: 95vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border: 2px solid #faf9f6;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      transform: scale(0.9);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      background-color: #f5f5f5;
+    }
+
+    .fullscreen-image-overlay.active .fullscreen-image {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .fullscreen-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: #faf9f6;
+      border: 2px outset #999;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      z-index: 2001;
+    }
+
+    .fullscreen-close:hover {
+      background-color: #fff;
+      transform: scale(1.05);
+    }
+
+    .fullscreen-close:active {
+      border-style: inset;
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <div class="crt-border">
+    <div class="container">
+      <div class="header">
+        Project Portfolio 💾
+      </div>
+
+      <div class="nav">
+        <div class="nav-buttons">
+          <a href="website.html" class="nav-button">← Back to Home</a>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="filter-container">
+          <button class="filter-button active" data-tag="all">All Projects</button>
+          <button class="filter-button" data-tag="AI/ML">AI/ML</button>
+          <button class="filter-button" data-tag="IoT">IoT</button>
+          <button class="filter-button" data-tag="Networking">Networking</button>
+          <button class="filter-button" data-tag="Frontend">Frontend</button>
+          <button class="filter-button" data-tag="Security">Security</button>
+          <button class="filter-button" data-tag="Hardware">Hardware</button>
+        </div>
+
+        <div class="projects-grid">
+          <!-- NAS Server -->
+          <a href="#" class="tile-link" data-project-id="nas-server">
+            <div class="project-tile" data-tags="IoT,Networking">
+              <img src="src/immich.png" alt="NAS Server">
+              <div>
+                <strong>NAS Server</strong><br>1TB with VPN & FTP support
+                <div class="tags">
+                  <span class="tag" style="background-color: #00ffff;">IoT</span>
+                  <span class="tag" style="background-color: #ff00ff;">Networking</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Smart Lock -->
+          <a href="#" class="tile-link" data-project-id="smart-lock">
+            <div class="project-tile" data-tags="Security,AI/ML">
+              <img src="src/home.png" alt="Smart Lock">
+              <div>
+                <strong>Smart Lock</strong><br>Facial Recognition + RFID
+                <div class="tags">
+                  <span class="tag" style="background-color: #ffcc00;">Security</span>
+                  <span class="tag" style="background-color: #00cc66;">AI/ML</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- DR Detection -->
+          <a href="#" class="tile-link" data-project-id="dr-detection">
+            <div class="project-tile" data-tags="AI/ML">
+              <img src="src/fundus.jpg" alt="DR Detection">
+              <div>
+                <strong>Custom AI Fundus Image Detection Model</strong><br>
+                <div class="tags">
+                  <span class="tag" style="background-color: #00cc66;">AI/ML</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- seneSENSE -->
+          <a href="#" class="tile-link" data-project-id="senesense">
+            <div class="project-tile" data-tags="Frontend,AI/ML">
+              <img src="src/Cell_Image2.png" alt="seneSENSE">
+              <div>
+                <strong>seneSENSE</strong><br>Health & Aging ML Platform
+                <div class="tags">
+                  <span class="tag" style="background-color: #ff3399;">Frontend</span>
+                  <span class="tag" style="background-color: #00cc66;">AI/ML</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- 3D Scanner -->
+          <a href="#" class="tile-link" data-project-id="3d-scanner">
+            <div class="project-tile" data-tags="IoT,Hardware">
+              <img src="src/2dx3.png" alt="3D Scanner">
+              <div>
+                <strong>3D Scanner</strong><br>MSP432E401Y-based Scanner
+                <div class="tags">
+                  <span class="tag" style="background-color: #00ffff;">IoT</span>
+                  <span class="tag" style="background-color: #A020F0;">Hardware</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- 2EI5 Project -->
+          <a href="#" class="tile-link" data-project-id="2ei5-project">
+            <div class="project-tile" data-tags="IoT,Hardware">
+              <img src="src/2ei5.png" alt="MOSFET XOR Gate">
+              <div>
+                <strong>MOSFET XOR Gate</strong><br>Custom Logic Gate Design
+                <div class="tags">
+                  <span class="tag" style="background-color: #00ffff;">IoT</span>
+                  <span class="tag" style="background-color: #A020F0;">Hardware</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Personal Website -->
+          <a href="#" class="tile-link" data-project-id="retro-website">
+            <div class="project-tile" data-tags="Frontend">
+              <img src="src/background.png" alt="Retro Website">
+              <div>
+                <strong>Retro Portfolio</strong><br>90s-Inspired Personal Site
+                <div class="tags">
+                  <span class="tag" style="background-color: #ff3399;">Frontend</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="crt-chin-image">
+    <img src="src/apple.png" alt="CRT Logo" />
+  </div>
+
+  <!-- Add Modal Overlay Structure -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title"></h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-image"></div>
+      <div class="modal-description"></div>
+      <div class="modal-tags"></div>
+      <div class="modal-links">
+        <a href="#" class="modal-link" target="_blank">View Project</a>
+        <a href="#" class="modal-link" target="_blank">Source Code</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Full Screen Image Viewer -->
+  <div class="fullscreen-image-overlay" id="fullscreenImage" style="display: none;">
+    <button class="fullscreen-close">&times;</button>
+    <img class="fullscreen-image" src="" alt="Fullscreen view">
+  </div>
+
+  <script>
+    // Existing filter functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.filter-button');
+      const projectTiles = document.querySelectorAll('.tile-link');
+      const modal = document.getElementById('projectModal');
+      const modalClose = modal.querySelector('.modal-close');
+
+      // Project data
+      const projectData = {
+        'nas-server': {
+          title: 'NAS Server',
+          description: `This project highlights a custom-built Network Attached Storage (NAS) server made from a recycled computer, focusing on security, usability, and low power consumption. With 1TB of RAID-configured storage and a built-in VPN server, it ensures both data reliability and secure remote access from anywhere.
+
+          Features include:
+          • FTP server for easy file transfers
+          • Simple web-based management interface
+          • Real-time backups and syncing
+          • Mobile app support, enabling secure photo access from iPhone and Android devices using VPN apps like WireGuard
+
+          The server runs on Immich, an open-source software, providing practical and secure storage solutions.`,
+          images: ['src/immich.png', 'src/photosapp.jpg'],
+          tags: ['IoT', 'Networking'],
+          projectUrl: 'https://immich.app/',
+          singleButton: true,
+          customButtons: {
+            viewProject: 'View Immich'
+          }
+        },
+        'smart-lock': {
+          title: 'Smart Lock',
+          description: `This project showcases an advanced home security system that integrates facial recognition technology with RFID access control for enhanced safety and convenience. Designed to provide both high accuracy and redundancy, the system performs real-time facial recognition with an accuracy of 92.5%, while also supporting RFID card access as a reliable backup method.
+          
+          Key features include:
+          • Real-time facial recognition with 92.5% accuracy
+          • RFID card backup access system
+          • Mobile app for remote access control
+          • Activity logging and notifications
+          • Integration with home automation systems
+          • Emergency backup power to maintain system reliability during outages`,
+          images: ['src/home.png', 'src/box.jpeg'],
+          tags: ['Security', 'AI/ML'],
+          projectUrl: 'https://youtu.be/OssdfSRK6s4',
+          sourceUrl: 'https://github.com/PranavReja/AutomatedDoor'
+        },
+        'dr-detection': {
+          title: 'AI Fundus Image Classification Model',
+          description: `This project presents a machine learning model designed to detect diabetic retinopathy using fundus (retinal) images. Developed as part of a healthcare-focused initiative, the model leverages deep learning techniques to deliver fast and reliable diagnostic support for medical professionals.
+
+          The system was trained on over 35,000 retinal images and achieves 84% accuracy on the test dataset. Built using TensorFlow and Keras, it supports real-time image processing and features a user-friendly web interface that allows clinicians to upload images and view classification results instantly.
+
+          Key features include:
+          • 85% accuracy on a comprehensive test dataset
+          • Deep learning model built with TensorFlow and Keras
+          • Trained on over 35,000 reimages
+          • Real-time image processing
+          • Web interface for medical professionals
+          • Detailed analysis reports`,
+          image: 'src/fundus.jpg',
+          tags: ['AI/ML'],
+          projectUrl: 'https://drive.google.com/file/d/1vZlzjEvuvwfOpDWWN1_MZfxQ7E3mm2jj/view',
+          sourceUrl: 'https://github.com/PranavReja/TurnerHacks-BlindSighted'
+        },
+        'senesense': {
+          title: 'seneSENSE',
+          description: `This project, developed for Hack the Valley V, introduces seneSENSE—a healthcare-focused web application aimed at addressing health concerns related to aging and human longevity. The goal of the application is to assist individuals and healthcare providers in identifying potential risks through data-driven insights and interactive tools.
+
+Powered by a machine learning backend, seneSENSE analyzes user data to support early detection and monitoring of age-related health conditions. The front end is built with HTML and CSS, offering a clean and modern interface, while Flask handles the backend logic and API endpoints.
+          
+          Key features:
+          • Machine learning backend for health analysis
+          • Flask-based architecture for efficient server-side handling
+          • Clean, responsive frontend built with HTML and CSS
+          • Patient history tracking to monitor health trends over time
+          • Interactive tools for health monitoring and screening
+          • Medical data visualizations to support user engagement and understanding`,
+          images: ['src/Cell_Image2.png', 'src/sene.jpg'],
+          tags: ['Frontend', 'AI/ML'],
+          projectUrl: 'https://github.com/PranavReja/seneSENSE',
+          sourceUrl: 'https://github.com/PranavReja/seneSENSE'
+        },
+        '3d-scanner': {
+          title: '3D Scanner',
+          description: `This project features a custom-built 3D scanning system developed as the final project for a university microprocessors course. Centered around the Texas Instruments MSP-EXP432E401Y development board, the scanner combines embedded systems programming with real-time data acquisition and 3D visualization.
+
+The system uses a VL53L1X Time-of-Flight (ToF) sensor mounted on a stepper motor to perform 360-degree spatial scans. Users manually advance the device along the Z-axis, enabling full 3D reconstructions layer by layer. The MSP432 coordinates motor control, distance measurement, and UART data transmission to a connected PC. All embedded logic is written in C, with additional optimizations using assembly for timing-critical functions.
+          
+          Key features:
+          • Microcontroller-based LiDAR scanning system
+          • Real-time data collection with UART communication
+          • Custom C implementation for motor control
+          • Point cloud data generation
+          • Python-based visualization using Open3D and NumPy
+          • Detailed technical documentation
+          
+          Technologies used:
+          • TI MSP432E401Y microcontroller
+          • C programming for embedded systems
+          • Python for data visualization
+          • Assembly language optimization
+          • UART and I2C hardware interfacing`,
+          images: ['src/2dx3.png', 'src/scan.png'],
+          tags: ['IoT'],
+          projectUrl: 'https://github.com/PranavReja/2DX3FINAL',
+          sourceUrl: 'https://github.com/PranavReja/2DX3FINAL'
+        },
+        '2ei5-project': {
+          title: 'MOSFET-based XOR Gate',
+          description: `Custom-designed XOR logic gate implementation using MOSFETs (Metal-Oxide-Semiconductor Field-Effect Transistors).
+          
+          Design Features:
+          • Built using discrete NMOS and PMOS transistors
+          • Complete truth table implementation
+          • Optimized for minimal transistor count
+          • Voltage-level compatible design
+          • Low power consumption architecture
+          
+          Technical Specifications:
+          • Supply voltage: 5V DC
+          • Input voltage levels: 0-5V
+          • Propagation delay: <50ns
+          • Power dissipation: <1mW
+          • Temperature range: 0-70°C
+          
+          Implementation Details:
+          • Custom PCB design
+          • SPICE simulation verified
+          • Real-world testing and validation
+          • Performance measurements and analysis`,
+          image: 'src/2ei5.png',
+          tags: ['IoT'],
+          projectUrl: '2EI4_Project_4_kukrejap (1).pdf',
+          singleButton: true,
+          customButtons: {
+            viewProject: 'View Documentation'
+          }
+        },
+        'retro-website': {
+          title: 'Retro-Styled Portfolio Website',
+          description: `A nostalgic journey back to the 90s with a modern twist - my personal portfolio website designed with retro aesthetics and modern functionality.
+          
+          Design Features:
+          • CRT monitor-inspired border effects
+          • Classic Windows 98-style UI elements
+          • Retro icon animations and transitions
+          • Responsive modern layout
+          • Interactive project showcases
+          
+          Technical Implementation:
+          • Pure HTML, CSS, and JavaScript
+          • No external frameworks
+          • Custom modal implementations
+          • Responsive image galleries
+          • Smooth animations and transitions
+          
+          Interactive Elements:
+          • Clippy-inspired assistant
+          • Animated project carousels
+          • Expandable project cards
+          • Photo modal viewer
+          • Retro-styled navigation buttons`,
+          images: ['src/background.png', 'src/apple.png'],
+          tags: ['Frontend'],
+          projectUrl: 'website.html',
+          singleButton: true,
+          customButtons: {
+            viewProject: 'Visit Homepage'
+          }
+        }
+      };
+
+      // Function to show project modal
+      function showProjectModal(projectId) {
+        const project = projectData[projectId];
+        
+        if (project) {
+          // Update modal content
+          modal.querySelector('.modal-title').textContent = project.title;
+          
+          // Handle single image or multiple images
+          const modalImageContainer = modal.querySelector('.modal-image');
+          if (Array.isArray(project.images)) {
+            modalImageContainer.style.display = 'flex';
+            modalImageContainer.style.gap = '10px';
+            modalImageContainer.style.justifyContent = 'center';
+            modalImageContainer.innerHTML = project.images.map(imgSrc => 
+              `<img src="${imgSrc}" alt="${project.title}" onclick="event.stopPropagation(); showFullscreenImage('${imgSrc}')">`
+            ).join('');
+          } else if (project.image) {
+            modalImageContainer.innerHTML = `<img src="${project.image}" alt="${project.title}" onclick="event.stopPropagation(); showFullscreenImage('${project.image}')">`;
+          }
+          
+          modal.querySelector('.modal-description').innerHTML = project.description.replace(/\n/g, '<br>');
+          
+          // Update tags
+          const tagsContainer = modal.querySelector('.modal-tags');
+          tagsContainer.innerHTML = '';
+          project.tags.forEach(tag => {
+            const tagColor = getTagColor(tag);
+            const tagSpan = document.createElement('span');
+            tagSpan.className = 'tag';
+            tagSpan.style.backgroundColor = tagColor;
+            tagSpan.textContent = tag;
+            tagsContainer.appendChild(tagSpan);
+          });
+
+          // Update links
+          const links = modal.querySelector('.modal-links');
+          const firstLink = links.querySelector('a:first-child');
+          const secondLink = links.querySelector('a:last-child');
+          
+          firstLink.href = project.projectUrl;
+          
+          // Handle single button case
+          if (project.singleButton) {
+            firstLink.textContent = project.customButtons.viewProject;
+            secondLink.style.display = 'none';
+          } else {
+            firstLink.textContent = project.customButtons ? project.customButtons.viewProject : 'View Project';
+            secondLink.style.display = '';
+            secondLink.href = project.sourceUrl;
+            secondLink.textContent = project.customButtons ? project.customButtons.sourceCode : 'Source Code';
+          }
+
+          // Show modal with animation
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          
+          // Trigger animations
+          requestAnimationFrame(() => {
+            modal.classList.add('active');
+          });
+        }
+      }
+
+      // Close modal functionality
+      function closeProjectModal() {
+        modal.classList.remove('active');
+        setTimeout(() => {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+          // Remove the project parameter from URL
+          const url = new URL(window.location);
+          url.searchParams.delete('project');
+          window.history.replaceState({}, '', url);
+        }, 300); // Match the transition duration
+      }
+
+      modalClose.addEventListener('click', closeProjectModal);
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeProjectModal();
+        }
+      });
+
+      // Add escape key handler
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+          closeProjectModal();
+        }
+      });
+
+      // Project tile click handler
+      projectTiles.forEach(tile => {
+        tile.addEventListener('click', (e) => {
+          e.preventDefault();
+          const projectId = tile.getAttribute('data-project-id');
+          showProjectModal(projectId);
+        });
+      });
+
+      // Check URL parameters for project to display
+      function checkUrlForProject() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('project');
+        if (projectId && projectData[projectId]) {
+          showProjectModal(projectId);
+        }
+      }
+
+      // Filter functionality
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+
+          const selectedTag = button.getAttribute('data-tag');
+
+          projectTiles.forEach(tile => {
+            const projectTile = tile.querySelector('.project-tile');
+            const tileTags = projectTile.getAttribute('data-tags').split(',');
+            
+            if (selectedTag === 'all') {
+              tile.style.display = 'block';
+              tile.style.order = '0';
+            } else if (tileTags.includes(selectedTag)) {
+              tile.style.display = 'block';
+              tile.style.order = '0';
+            } else {
+              tile.style.display = 'none';
+              tile.style.order = '1';
+            }
+          });
+        });
+      });
+
+      // Check for project parameter in URL on page load
+      checkUrlForProject();
+
+      // Helper function to get tag colors
+      function getTagColor(tag) {
+        const colors = {
+          'AI/ML': '#00cc66',
+          'IoT': '#00ffff',
+          'Networking': '#ff00ff',
+          'Frontend': '#ff3399',
+          'Security': '#ffcc00',
+          'Hardware': '#A020F0'
+        };
+        return colors[tag] || '#999999';
+      }
+
+      const fullscreenOverlay = document.getElementById('fullscreenImage');
+      const fullscreenImage = fullscreenOverlay.querySelector('.fullscreen-image');
+      const fullscreenClose = fullscreenOverlay.querySelector('.fullscreen-close');
+
+      function showFullscreenImage(src) {
+        fullscreenImage.src = src;
+        fullscreenOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Trigger animation
+        requestAnimationFrame(() => {
+          fullscreenOverlay.classList.add('active');
+        });
+      }
+
+      function closeFullscreenImage() {
+        fullscreenOverlay.classList.remove('active');
+        setTimeout(() => {
+          fullscreenOverlay.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }, 300);
+      }
+
+      // Close fullscreen on button click
+      fullscreenClose.addEventListener('click', closeFullscreenImage);
+
+      // Close fullscreen on overlay click
+      fullscreenOverlay.addEventListener('click', (e) => {
+        if (e.target === fullscreenOverlay) {
+          closeFullscreenImage();
+        }
+      });
+
+      // Close fullscreen on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && fullscreenOverlay.style.display === 'flex') {
+          closeFullscreenImage();
+        }
+      });
+
+      // Make showFullscreenImage available globally
+      window.showFullscreenImage = showFullscreenImage;
+    });
+  </script>
+</body>
+</html>
