@@ -134,6 +134,10 @@
       border-color: #A020F0;
     }
 
+    .filter-button[data-tag="Full-Stack"] {
+      border-color: #FFA500;
+    }
+
     .filter-button.active[data-tag="all"] {
       background-color: #666;
     }
@@ -162,6 +166,11 @@
     .filter-button.active[data-tag="Hardware"] {
     background-color: #A020F0;
     color: white;
+    }
+
+    .filter-button.active[data-tag="Full-Stack"] {
+      background-color: #FFA500;
+      color: black;
     }
 
     /* Project Grid Styles */
@@ -533,9 +542,23 @@
           <button class="filter-button" data-tag="Frontend">Frontend</button>
           <button class="filter-button" data-tag="Security">Security</button>
           <button class="filter-button" data-tag="Hardware">Hardware</button>
+          <button class="filter-button" data-tag="Full-Stack">Full-Stack</button>
         </div>
 
         <div class="projects-grid">
+          <!-- Harmonize -->
+          <a href="#" class="tile-link" data-project-id="harmonize">
+            <div class="project-tile" data-tags="Full-Stack">
+              <img src="src/logo.png" alt="Harmonize">
+              <div>
+                <strong>Harmonize</strong><br>Collaborative Queue
+                <div class="tags">
+                  <span class="tag" style="background-color: #FFA500;">Full-Stack</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
           <!-- NAS Server -->
           <a href="#" class="tile-link" data-project-id="nas-server">
             <div class="project-tile" data-tags="IoT,Networking">
@@ -673,6 +696,25 @@
 
       // Project data
       const projectData = {
+        'harmonize': {
+          title: 'Harmonize',
+          description: `Harmonize is a collaborative queue management platform designed to democratize the "aux cord." It allows a host (the Admin) to play music from various platforms while inviting others to join a room and collaboratively manage the playlist.
+
+          Key Features:
+          • Centralized Playback: The Admin acts as the sole audio output source, playing tracks seamlessly from YouTube, Spotify, and SoundCloud.
+          • Collaborative Queue: Joined users can search for songs, add them to the shared queue, and see what's coming up next.
+          • Real-Time Updates: All users see the "Now Playing" status, progress bar, and queue updates in real-time.
+          • Multi-Platform Support: Queue tracks from multiple services into a single, unified playlist.
+          
+          Tech Stack:
+          • Frontend: React, Vite
+          • Backend: Node.js, Express
+          • Database: MongoDB Atlas`,
+          images: ['src/logo.png'],
+          tags: ['Full-Stack'],
+          projectUrl: '#',
+          sourceUrl: '#'
+        },
         'nas-server': {
           title: 'NAS Server',
           description: `This project highlights a custom-built Network Attached Storage (NAS) server made from a recycled computer, focusing on security, usability, and low power consumption. With 1TB of RAID-configured storage and a built-in VPN server, it ensures both data reliability and secure remote access from anywhere.
@@ -981,7 +1023,8 @@ The system uses a VL53L1X Time-of-Flight (ToF) sensor mounted on a stepper motor
           'Networking': '#ff00ff',
           'Frontend': '#ff3399',
           'Security': '#ffcc00',
-          'Hardware': '#A020F0'
+          'Hardware': '#A020F0',
+          'Full-Stack': '#FFA500'
         };
         return colors[tag] || '#999999';
       }
