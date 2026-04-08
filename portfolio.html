@@ -546,6 +546,20 @@
         </div>
 
         <div class="projects-grid">
+          <!-- Property Intelligence -->
+          <a href="#" class="tile-link" data-project-id="property-intelligence">
+            <div class="project-tile" data-tags="AI/ML,Full-Stack">
+              <img src="src/house-icon.svg" alt="Property Intelligence">
+              <div>
+                <strong>Property Intelligence</strong><br>Title Risk Analyzer
+                <div class="tags">
+                  <span class="tag" style="background-color: #00cc66;">AI/ML</span>
+                  <span class="tag" style="background-color: #FFA500;">Full-Stack</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
           <!-- Harmonize -->
           <a href="#" class="tile-link" data-project-id="harmonize">
             <div class="project-tile" data-tags="Full-Stack">
@@ -696,6 +710,25 @@
 
       // Project data
       const projectData = {
+        'property-intelligence': {
+          title: 'GTA Property Intelligence & Title Risk Analyzer',
+          description: `A sophisticated real estate decision-support platform designed for the Greater Toronto Area (GTA). This tool bridges the gap between raw property data and legal/financial clarity by combining high-precision tax calculations with AI-driven legal document auditing.
+
+          Key Features:
+          • Financial Transparency: Real-time calculation of Provincial and Municipal Land Transfer Taxes.
+          • Legal Risk Mitigation: Automated AI auditing of Teranet Parcel Registers (PDFs) to identify "Zombie Mortgages," liens, and easements.
+          • Market Intelligence: Interactive heatmaps visualizing tax-to-price ratios across Ontario FSAs.
+          • Tax Arbitrage: Spatial analysis to find significant tax savings by moving just outside the Toronto border.
+
+          Tech Stack:
+          • Frontend: React 19, TypeScript, Tailwind CSS v4, Framer Motion, Leaflet
+          • Backend: FastAPI (Python), Google Gemini 2.0/2.5
+          • Geospatial: pgeocode, geopy, pandas`,
+          images: ['src/house-icon.svg'],
+          tags: ['AI/ML', 'Full-Stack'],
+          projectUrl: 'https://property-evaluator-iota.vercel.app/',
+          sourceUrl: 'https://github.com/PranavReja/PropertyEvaluator'
+        },
         'harmonize': {
           title: 'Harmonize',
           description: `Harmonize is a collaborative queue management platform designed to democratize the "aux cord." It allows a host (the Admin) to play music from various platforms while inviting others to join a room and collaboratively manage the playlist.
