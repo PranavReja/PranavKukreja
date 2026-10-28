@@ -800,7 +800,7 @@ button:hover {
             <span style="font-size: 15px; color: black; font-weight: bold; font-family: inherit; margin-top: 0;">Projects</span>
           </div>
         
-                    <div style="display: flex; flex-direction: column; align-items: center;">            <a href="Pranav Kukreja Resume Updated August 2025.docx.pdf" target="_blank" rel="noopener noreferrer">              <img src="src/acrobat.gif" alt="Resume" style="height: 50px; margin-bottom: -10px;">            </a>            <span style="font-size: 15px; color: black; font-weight: bold; font-family: inherit; margin-top: 0;">Resume</span>          </div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">            <a href="Pranav Kukreja Resume.pdf" target="_blank" rel="noopener noreferrer">              <img src="src/acrobat.gif" alt="Resume" style="height: 50px; margin-bottom: -10px;">            </a>            <span style="font-size: 15px; color: black; font-weight: bold; font-family: inherit; margin-top: 0;">Resume</span>          </div>
         
           <div style="display: flex; flex-direction: column; align-items: center;">
             <a href="mailto:kukrejap@mcmaster.ca">
@@ -819,7 +819,8 @@ button:hover {
         <a name="about"></a>
         <ul>
           <li>I'm studying Computer Engineering at McMaster University.</li>
-          <li>Previously a Systems Integration Engineering Intern at <a href="#" onclick="showExperienceModal('general-dynamics'); return false;">General Dynamics Mission Systems–Canada</a></li>
+          <li>Previously a Growth Engineering Intern at <a href="#" onclick="showExperienceModal('ownright'); return false;">Ownright</a>, the engineering team's first-ever intern</li>
+          <li>Systems Integration Engineering Intern at <a href="#" onclick="showExperienceModal('general-dynamics'); return false;">General Dynamics Mission Systems–Canada</a></li>
           <li>Interned at <a href="#" onclick="showExperienceModal('sterilwize'); return false;">SterilWize</a>, building Pi-based IoT devices on AWS</li>
           <li>Part-time <a href="#" onclick="showExperienceModal('wyzant'); return false;">Tutor</a> in subjects such as Python, math, and web development</li>
           <li>Worked on SLAM and LiDAR in ROS2 for <a href="#" onclick="showExperienceModal('robomaster'); return false;">McMaster RoboMaster</a></li>
@@ -1048,11 +1049,11 @@ button:hover {
         <!-- Current Position -->
         <div style="flex: 1;">
           <h2 class="experience-title" style="margin-bottom: 10px; margin-top: 0;">Previously at:</h2>
-          <a href="#" class="tile-link" data-company="general-dynamics">
+          <a href="#" class="tile-link" data-company="ownright">
             <div class="carousel-item">
-              <img src="src/GD.png" alt="General Dynamics">
+              <img src="src/ownright.jpg" alt="Ownright">
               <div>
-                <strong>General Dynamics</strong> <span class="description">Systems Integration Intern</span>
+                <strong>Ownright</strong> <span class="description">Growth Engineering Intern</span>
                 <div class="tags">
                   <span class="tag" style="background-color: #00ffff;">Previous Role</span>
                 </div>
@@ -1066,6 +1067,17 @@ button:hover {
           <h2 class="experience-title" style="margin-bottom: 10px; margin-top: 0;">More Things I've Done:</h2>
           <div class="mini-carousel">
             <div class="mini-carousel-track" id="experienceTrack">
+              <a href="#" class="tile-link" data-company="general-dynamics">
+                <div class="carousel-item">
+                  <img src="src/GD.png" alt="General Dynamics">
+                  <div>
+                    <strong>General Dynamics</strong> <span class="description">Systems Integration Intern</span>
+                    <div class="tags">
+                      <span class="tag" style="background-color: #00ffff;">Previous Role</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
               <a href="#" class="tile-link" data-company="sterilwize">
                 <div class="carousel-item">
                   <img src="src/steril.jpg" alt="SterilWize">
@@ -1188,6 +1200,30 @@ button:hover {
 
     // Experience data
     const experienceData = {
+      'ownright': {
+        title: 'Ownright',
+        description: `Growth Engineering Intern (May 2026 - Aug 2026)
+
+        The engineering team's first-ever intern, owning growth projects across Ownright's client-facing software.
+
+        Key Achievements:
+        • Integrated PostHog analytics across the full software suite to improve customer tracking
+        • Designed and ran A/B experiments across all client-facing software, producing results that directly informed product changes
+        • Built email lists and drip campaigns in Customer.io with custom business logic
+        • Developed AI-powered Reddit automations to improve Answer Engine Optimization (AEO) and brand visibility
+
+        Technologies:
+        • PostHog
+        • Customer.io
+        • A/B Testing
+        • AI Automation
+
+        Location: Toronto, Ontario`,
+        image: 'src/ownright-interns.jpg',
+        tags: ['Previous Role'],
+        companyUrl: 'https://lnkd.in/p/gcfJP2NQ',
+        linkText: 'View on LinkedIn'
+      },
       'general-dynamics': {
         title: 'General Dynamics',
         description: `Systems Integration Engineering Intern
@@ -1206,7 +1242,7 @@ button:hover {
         • Testing frameworks
         • Version control systems`,
         image: 'src/GD.png',
-        tags: ['Current Role'],
+        tags: ['Previous Role'],
         companyUrl: 'https://gdmissionsystems.ca/'
       },
       'siliconvalley4u': {
@@ -1350,7 +1386,7 @@ button:hover {
           };
         } else {
           linkElement.href = experience.companyUrl;
-          linkElement.textContent = 'View Company';
+          linkElement.textContent = experience.linkText || 'View Company';
           linkElement.onclick = null;
           linkElement.target = '_blank';
         }
